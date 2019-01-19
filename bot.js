@@ -20,7 +20,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "-";
+const prefix = "=";
 /////////////////////////
 ////////////////////////
 
@@ -362,7 +362,7 @@ client.user.setGame(`%help |By Maestro`,'https://www.twitch.tv/tarikrs');       
 
 const devs = ["336374035141230592"]
  
-const adminprefix = "%";//Narox
+const adminprefix = "=";//Narox
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!devs.includes(message.author.id)) return;
