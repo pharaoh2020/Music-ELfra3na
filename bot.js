@@ -356,7 +356,7 @@ client.user.setStatus("dnd");
 
 // playing
 client.on('ready', () => {                           
-client.user.setGame(`%help |By Maestro`,'https://www.twitch.tv/tarikrs');                                                                                                                                                                                                                                                                                                                                                                                                                             client.user.setGame(`Music |By Maestro`,'https://www.twitch.tv/v5bz');
+client.user.setGame(`%help |By Maestro`,'https://www.twitch.tv/tarikrs');                                                                                                                                                                                                                                                                                                                                                                                                                             client.user.setGame(`=invite / Music`,'https://www.twitch.tv/v5bz');
 });
 
 
@@ -411,3 +411,16 @@ client.on('message', message => {
     }
  
   })
+
+
+client.on("message", async message => {
+    if(message.content.startsWith(prefix + "invite")) {
+        let invite = new Discord.RichEmbed()
+            .setColor("RANDOM")
+            .setAuthor(message.author.username, message.author.displayAvatarURL)
+            .setThumbnail(message.author.avatarURL)
+            .setTitle("**Click Here To Invite The Bot To Your Server :sparkling_heart:**")
+            .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=536202705295769630&permissions=8&scope=bot`);
+            message.channel.sendEmbed(invite);
+    }
+});
