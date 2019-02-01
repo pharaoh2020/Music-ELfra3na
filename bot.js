@@ -187,7 +187,7 @@ client.on('message', async msg => {
 		serverQueue.connection.dispatcher.end('Ok, skipped!');
         return undefined;
         
-	} else if (command === `stop`) {
+	} else if (command === `leave`) {
 
 		if (!msg.member.voiceChannel) return msg.channel.send("You Must be in a Voice channel to Run the Music commands!");
         if (!serverQueue) return msg.channel.send("There is no Queue to stop!!");
@@ -356,7 +356,7 @@ client.user.setStatus("dnd");
 
 // playing
 client.on('ready', () => {                           
-client.user.setGame(`%help |By Maestro`,'https://www.twitch.tv/tarikrs');                                                                                                                                                                                                                                                                                                                                                                                                                             client.user.setGame(`=invite / Music`,'https://www.twitch.tv/v5bz');
+client.user.setGame(`=invite |By Maestro`,'https://www.twitch.tv/tarikrs');                                                                                                                                                                                                                                                                                                                                                                                                                             client.user.setGame(`=invite / Music`,'https://www.twitch.tv/v5bz');
 });
 
 
@@ -413,14 +413,28 @@ client.on('message', message => {
   })
 
 
-client.on("message", async message => {
-    if(message.content.startsWith(prefix + "invite")) {
-        let invite = new Discord.RichEmbed()
-            .setColor("RANDOM")
-            .setAuthor(message.author.username, message.author.displayAvatarURL)
-            .setThumbnail(message.author.avatarURL)
-            .setTitle("**Click Here To Invite The Bot To Your Server :sparkling_heart:**")
-            .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=536202705295769630&permissions=8&scope=bot`);
-            message.channel.sendEmbed(invite);
-    }
+
+
+client.on('message', message => {
+
+  if(message.content.startsWith(`${prefix}invite`)){
+
+    var embed = new Discord.RichEmbed()
+
+    .setTitle(">> ClickHere To Add" + `${client.user.username}` + " <<")
+
+    .setURL("https://discordapp.com/oauth2/authorize?client_id=" + `${client.user.id}` + "&scope=bot&permissions=2080374975")
+
+    .setTimestamp()
+
+    .setFooter(`Requested By | ${message.author.username}`)
+
+    .setColor("RANDOM")
+
+    message.channel.send("✅ | Check Your DM! تم الأرسال بلخاص")
+
+    message.author.send({embed})
+
+  }
+
 });
